@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.com/MFTabriz/reaction_pypaths.svg?branch=master)](https://travis-ci.com/MFTabriz/reaction_pypaths)
 
 ## reaction_pypaths
-A simple python script for drawing reaction path energy diagrams
+A simple yet flexible python script for drawing reaction path energy diagrams using the [matplotlib](https://matplotlib.org/)
 
 ### Customization
-All the diagram parameters can be tweaked in the configs.py file.
+All the diagram parameters can be tweaked in the [configs.py](https://github.com/MFTabriz/reaction_pypaths/blob/master/configs.py) file.
 
 ### Example
 ```python
