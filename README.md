@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/MFTabriz/reaction_pypaths.svg?branch=master)](https://travis-ci.com/MFTabriz/reaction_pypaths)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/MFTabriz/reaction_pypaths.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MFTabriz/reaction_pypaths/context:python)
 
 ## reaction_pypaths
 A simple yet flexible python script for drawing reaction path energy diagrams using the [matplotlib](https://matplotlib.org/)
