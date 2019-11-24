@@ -10,38 +10,22 @@ jobs:
         - isort -c -vb ./*.py
         - black --target-version py35 --check ./*.py
       after_success: true
-    - name: "Python 3.4 on Xenial Linux"
-      python: 3.4
     - name: "Python 3.5 on Xenial Linux"
       python: 3.5      
     - name: "Python 3.6 on Xenial Linux"
       python: 3.6
     - name: "Python 3.7 on Xenial Linux"
       python: 3.7
-    - name: "Python 3.7 on macOS"
-      os: osx
-      osx_image: xcode11
-      language: shell
-    - name: "Python 3.5 on Windows"
-      os: windows
-      language: shell
-      before_install:
-        - certutil -generateSSTFromWU roots.sst && certutil -addstore -f root roots.sst
-        - choco install python --version 3.5.4
-        - python -m pip install --upgrade pip
-        - powershell -Command New-Item -ItemType HardLink -Path "c:/Python35/python3.exe" -Target "c:/Python35/python.exe"
-      env: PATH=/c/Python35:/c/Python35/Scripts:$PATH
-    - name: "Python 3.8 on Windows"
-      os: windows
-      language: shell
-      before_install:
-        - certutil -generateSSTFromWU roots.sst && certutil -addstore -f root roots.sst
-        - choco install python --version 3.8.0
-        - python -m pip install --upgrade pip
-        - powershell -Command New-Item -ItemType HardLink -Path "c:/Python38/python3.exe" -Target "c:/Python38/python.exe"
-      env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
+    - name: "Python 3.8 on Xenial Linux"
+      python: 3.8
+addons:
+    apt:
+      packages:
+        - texlive-latex-extra
 install:
   - pip3 install -r requirements.txt
 script:
   - python3 -V
   - python3 -m py_compile configs.py example.py reaction_pypaths.py
+  - mv output.png reference.png
+  - python3 example.py

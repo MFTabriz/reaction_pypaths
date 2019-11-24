@@ -1,11 +1,11 @@
 """
 reaction_pypaths
-A simple python script for drawing reaction path energy diagrams 
+A simple python script for drawing the reaction path energy diagrams
 
-author: MFTabriz@github
+Author: MFTabriz@github
 License: GPL v3+
 
-See example.py for a simple guide on the usage
+See example.py for a simple example of the usage
 """
 import sys
 from collections import namedtuple
@@ -33,21 +33,10 @@ Level = namedtuple(
 Link = namedtuple("Link", ["level_id1", "level_id2", "color", "width", "style"])
 
 
-class diagram:
+class Diagram:
     def __init__(self):
         self.levels = []
         self.links = []
-
-    """
-    Add a new level to the diagram
-        energy : Energy of the new level
-        label : tag for the new level
-        attach_last: True [the level should be grouped with the last level]
-        label_color
-        line_color
-    
-    Returns the ID of the new level
-    """
 
     def add_level(
         self,
@@ -58,6 +47,16 @@ class diagram:
         label_color=None,
         line_color=None,
     ):
+        """
+        Add a new level to the diagram
+            energy : Energy of the new level
+            label : tag for the new level
+            attach_last: True [the level should be grouped with the last level]
+            label_color
+            line_color
+
+        Returns the ID of the new level
+        """
         if self.levels:
             last_order = self.levels[-1].order
             if attach_last:
@@ -67,9 +66,9 @@ class diagram:
         else:
             level_order = 0
 
-        t = TextPath((0, 0), label, size=configs.level_labels_fontsize)
-        bb = t.get_extents()
-        level_width = bb.width / 4 + configs.level_labels_padding
+        text = TextPath((0, 0), label, size=configs.level_labels_fontsize, usetex=True)
+        text_size = text.get_extents()
+        level_width = text_size.width / 4 + configs.level_labels_padding
 
         if not energy_tag_color:
             energy_tag_color = configs.energy_tags_color
@@ -98,15 +97,14 @@ class diagram:
 
         return level_id
 
-    """
-    Add a new link to the diagram
-        level_id1, level_id2 : ID of the connecting levels
-        color
-        width
-        style
-    """
-
     def add_link(self, level_id1, level_id2, color=None, width=None, style=None):
+        """
+        Add a new link to the diagram
+            level_id1, level_id2 : ID of the connecting levels
+            color
+            width
+            style
+        """
         if max(level_id1, level_id2) >= len(self.levels):
             sys.exit("ERROR: invalid level_id for linking!")
         if not color:
@@ -117,13 +115,11 @@ class diagram:
             style = configs.links_style
         self.links.append(Link(level_id1, level_id2, color, width, style))
 
-    """
-    plot the diagram
-    returns the handle for plt.figure()
-    """
-
     def plot(self):
-
+        """
+        plot the diagram
+        returns the handle for plt.figure()
+        """
         self._adjust_positions()
 
         figure = plt.figure(figsize=[configs.plot_width, configs.plot_height])
@@ -200,11 +196,10 @@ class diagram:
                 diag.add_line(link_line)
         return figure
 
-    """
-    Adjust the parameters for the width of the diagram and tag offsetsl
-    """
-
     def _adjust_positions(self):
+        """
+        Adjust the parameters for the width of the diagram and tag offsets
+        """
         distinct_levels_num = self.levels[-1].order + 1
         next_level_start_position = configs.levels_horizontal_offset
 

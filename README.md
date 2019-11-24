@@ -2,16 +2,19 @@
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/MFTabriz/reaction_pypaths.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MFTabriz/reaction_pypaths/context:python)
 
 ## reaction_pypaths
-A simple yet flexible python script for drawing reaction path energy diagrams using the [matplotlib](https://matplotlib.org/)
+A simple yet flexible python script for drawing reaction path energy diagrams.
 
 ### Customization
 All the diagram parameters can be tweaked in the [configs.py](https://github.com/MFTabriz/reaction_pypaths/blob/master/configs.py) file.
+
+### Requirements
+The script is written for python 3 and relies on the [matplotlib](https://matplotlib.org/) module for drawing the diagrams which in turn uses the [TeX Live](https://tug.org/texlive/) for generating the labels in the TeX format.
 
 ### Example
 ```python
 import reaction_pypaths
 
-energy_plot = reaction_pypaths.diagram()
+energy_plot = reaction_pypaths.Diagram()
 
 # add levels to the diagram
 FORMULA1 = energy_plot.add_level(1.1, "crazy formula $[ZX_2]_5^{+}$")

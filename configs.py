@@ -1,5 +1,5 @@
 """
-Configurations for the ****
+Configurations for the reaction_pypaths
 """
 plot_height = 4  # diagram height in inch
 

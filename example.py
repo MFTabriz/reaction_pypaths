@@ -1,8 +1,8 @@
 import reaction_pypaths
 
-energy_plot = reaction_pypaths.diagram()
+energy_plot = reaction_pypaths.Diagram()
 
-# add levels to the diagram
+# add the levels to the diagram
 formula1 = energy_plot.add_level(1.1, "crazy formula $[ZX_2]_5^{+}$")
 PMM14 = energy_plot.add_level(-0.1, "$(PMM14)_3$", True)
 PZX14_mix = energy_plot.add_level(-0.5, "$(PZX14)_3 + P4$")
