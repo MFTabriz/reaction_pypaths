@@ -18,4 +18,4 @@ energy_plot.add_link(transition_state, p1)
 energy_plot.add_link(transition_state, p2)
 
 # plot the diagram and save the final result to the file
-energy_plot.plot().savefig("output.png")
+energy_plot.plot("output.png")

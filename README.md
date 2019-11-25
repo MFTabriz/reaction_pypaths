@@ -32,7 +32,7 @@ energy_plot.add_link(TS, PD1)
 energy_plot.add_link(TS, PD2)
 
 # plot the diagram and save the final result to the file
-energy_plot.plot().savefig("output.png")
+energy_plot.plot("output.png")
 ```
 ![Sample diagram](https://github.com/MFTabriz/reaction_pypaths/raw/master/output.png)
 

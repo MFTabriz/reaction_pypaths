@@ -29,3 +29,5 @@ script:
   - python3 -m py_compile configs.py example.py reaction_pypaths.py
   - mv output.png reference.png
   - python3 example.py
+  - identify reference.png
+  - identify output.png

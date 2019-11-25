@@ -3,6 +3,8 @@ Configurations for the reaction_pypaths
 """
 plot_height = 4  # diagram height in inch
 
+plot_dpi = 120
+
 energy_axis_label = "$\Delta$E (eV)"
 energy_axis_label_fontsize = 10
 energy_axis_label_fontweight = "bold"

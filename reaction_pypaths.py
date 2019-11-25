@@ -115,14 +115,16 @@ class Diagram:
             style = configs.links_style
         self.links.append(Link(level_id1, level_id2, color, width, style))
 
-    def plot(self):
+    def plot(self, output_file):
         """
         plot the diagram
-        returns the handle for plt.figure()
+
         """
         self._adjust_positions()
 
-        figure = plt.figure(figsize=[configs.plot_width, configs.plot_height])
+        figure = plt.figure(
+            figsize=[configs.plot_width, configs.plot_height], dpi=configs.plot_dpi
+        )
         diag = figure.add_subplot(1, 1, 1)
         diag.set_ylabel(
             configs.energy_axis_label,
@@ -194,7 +196,9 @@ class Diagram:
                     color=link.color,
                 )
                 diag.add_line(link_line)
-        return figure
+        if not output_file:
+            output_file = "output.png"
+        figure.savefig(output_file, dpi=configs.plot_dpi)
 
     def _adjust_positions(self):
         """
