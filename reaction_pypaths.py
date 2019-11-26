@@ -11,6 +11,7 @@ import sys
 from collections import namedtuple
 
 from matplotlib import pyplot as plt
+from matplotlib import rc
 from matplotlib.lines import Line2D as line
 from matplotlib.textpath import TextPath
 
@@ -35,6 +36,8 @@ Link = namedtuple("Link", ["level_id1", "level_id2", "color", "width", "style"])
 
 class Diagram:
     def __init__(self):
+        rc("font", **{"family": "serif", "serif": ["DejaVu Sans"]})
+        rc("text", usetex=True)
         self.levels = []
         self.links = []
 
@@ -125,7 +128,7 @@ class Diagram:
         figure = plt.figure(
             figsize=[configs.plot_width, configs.plot_height], dpi=configs.plot_dpi
         )
-        diag = figure.add_subplot(1, 1, 1)
+        diag = figure.add_subplot(1, 1, 1, xmargin=0.02, ymargin=0.02)
         diag.set_ylabel(
             configs.energy_axis_label,
             fontweight=configs.energy_axis_label_fontweight,
@@ -196,6 +199,11 @@ class Diagram:
                     color=link.color,
                 )
                 diag.add_line(link_line)
+
+                min_energy = min(level.energy for level in self.levels)
+                max_energy = max(level.energy for level in self.levels)
+                plt.ylim(min_energy * 1.1, max_energy * 1.1)
+
         if not output_file:
             output_file = "output.png"
         figure.savefig(output_file, dpi=configs.plot_dpi)

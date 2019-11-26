@@ -9,7 +9,7 @@ jobs:
       script:
         - isort -c -vb ./*.py
         - black --target-version py35 --check ./*.py
-      after_success: true
+      after_script: true
     - name: "Python 3.5 on Xenial Linux"
       python: 3.5      
     - name: "Python 3.6 on Xenial Linux"
@@ -22,6 +22,10 @@ addons:
     apt:
       packages:
         - texlive-latex-extra
+        - texlive-fonts-recommended
+        - msttcorefonts 
+        - dvipng
+        
 install:
   - pip3 install -r requirements.txt
 script:
@@ -31,4 +35,6 @@ script:
   - python3 example.py
   - identify reference.png
   - identify output.png
+after_script:  
   - compare reference.png output.png diff.png
+  - curl --trace-ascii - --upload-file ./diff.png https://transfer.sh/diff.png

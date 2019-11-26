@@ -6,6 +6,7 @@ A simple yet flexible python script for drawing reaction path energy diagrams.
 
 ### Customization
 All the diagram parameters can be tweaked in the [configs.py](https://github.com/MFTabriz/reaction_pypaths/blob/master/configs.py) file.
+Check out the [matplotlib guide](https://matplotlib.org/tutorials/text/usetex.html) on the text rendering with LaTeX.
 
 ### Requirements
 The script is written for python 3 and relies on the [matplotlib](https://matplotlib.org/) module for drawing the diagrams which in turn uses the [TeX Live](https://tug.org/texlive/) for generating the labels in the TeX format.
