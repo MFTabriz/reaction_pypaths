@@ -2,8 +2,8 @@
 Configurations for the reaction_pypaths
 """
 plot_height = 4  # diagram height in inch
-
 plot_dpi = 120
+plot_font = "serif"
 
 energy_axis_label = "$\Delta$E (eV)"
 energy_axis_label_fontsize = 10
@@ -22,7 +22,7 @@ level_labels_color = "blue"
 level_labels_fontsize = 10
 level_labels_fontweight = "normal"
 level_labels_offset = 0.3
-level_labels_padding = 1
+level_labels_padding = 2
 
 level_lines_color = "black"
 level_lines_thickness = 2.5

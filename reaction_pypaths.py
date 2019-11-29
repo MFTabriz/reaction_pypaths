@@ -11,11 +11,15 @@ import sys
 from collections import namedtuple
 
 from matplotlib import pyplot as plt
-from matplotlib import rc
+from matplotlib import rc, use
+from matplotlib.font_manager import FontProperties
 from matplotlib.lines import Line2D as line
-from matplotlib.textpath import TextPath
+from matplotlib.path import Path
+from matplotlib.textpath import TextToPath
 
 import configs
+
+use("AGG")
 
 Level = namedtuple(
     "Level",
@@ -36,7 +40,7 @@ Link = namedtuple("Link", ["level_id1", "level_id2", "color", "width", "style"])
 
 class Diagram:
     def __init__(self):
-        rc("font", **{"family": "serif", "serif": ["DejaVu Sans"]})
+        rc("font", **{"serif": [configs.plot_font]})
         rc("text", usetex=True)
         self.levels = []
         self.links = []
@@ -69,9 +73,16 @@ class Diagram:
         else:
             level_order = 0
 
-        text = TextPath((0, 0), label, size=configs.level_labels_fontsize, usetex=True)
-        text_size = text.get_extents()
-        level_width = text_size.width / 4 + configs.level_labels_padding
+        fp = FontProperties(
+            family=configs.plot_font, size=configs.level_labels_fontsize
+        )
+        pathgenerator = TextToPath()
+        pathgenerator.DPI = configs.plot_dpi
+        verts, codes = pathgenerator.get_text_path(fp, label, ismath="TeX")
+        text_size = Path(verts, codes).get_extents()
+        level_width = (
+            text_size.width / configs.plot_dpi * 1.5 + configs.level_labels_padding
+        )
 
         if not energy_tag_color:
             energy_tag_color = configs.energy_tags_color
