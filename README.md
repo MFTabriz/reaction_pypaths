@@ -19,7 +19,7 @@ import reaction_pypaths
 energy_diagram = reaction_pypaths.Diagram()
 
 # add the levels to the diagram
-formula1 = energy_diagram.add_level(1.1, "crazy formula $[ZX_2]_5^{+}$")
+formula1 = energy_diagram.add_level(1.1, "crazy formula $[ZX_2]_5^{+}$\n$AB_3$")
 PMM14 = energy_diagram.add_level(-0.1, "$(PMM14)_3$", True)
 PZX14_mix = energy_diagram.add_level(-0.5, "$(PZX14)_3 + P4$")
 transition_state = energy_diagram.add_level(0, "TS")
